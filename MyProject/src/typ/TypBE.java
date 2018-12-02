@@ -1,6 +1,7 @@
+package typ;
 import java.sql.*;
 
-public class Typ {
+public class TypBE {
 	
 	//@Column, ...
 	private int id;
@@ -11,7 +12,7 @@ public class Typ {
 	private String marke;
 	private boolean storniert;
 	
-	public Typ(int id, String name, String modellbez, String entw_baur, String antr_arch, String marke, boolean storniert) {
+	public TypBE(int id, String name, String modellbez, String entw_baur, String antr_arch, String marke, boolean storniert) {
 		this.id = id;
 		this.name = name;
 		this.modellbez = modellbez;  

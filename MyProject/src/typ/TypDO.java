@@ -1,3 +1,4 @@
+package typ;
 import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class TypDO {
 		System.out.println("Sucsessfully connected to Database" + url);	
 	}
 
-	public List<Typ> GetAllTyp () throws Exception {
-		List<Typ> list = new ArrayList<>();
+	public List<TypBE> GetAllTyp () throws Exception {
+		List<TypBE> list = new ArrayList<>();
 		
 		Statement statement = null;
 		ResultSet resultSet = null;
@@ -32,8 +33,8 @@ public class TypDO {
 			resultSet = statement.executeQuery("select * from typ");
 			
 			while (resultSet.next()) {
-				Typ tempTyp = ConvertRowToTyp(resultSet);
-				list.add(tempTyp);
+				TypBE typBE = ConvertRowToTyp(resultSet);
+				list.add(typBE);
 			}
 			return list;
 			
@@ -42,8 +43,8 @@ public class TypDO {
 		}	
 	}
 	
-	public List<Typ> FindTypByModellbez (String modellbez) throws Exception {
-		List<Typ> list = new ArrayList<>();
+	public List<TypBE> FindTypByModellbez (String modellbez) throws Exception {
+		List<TypBE> list = new ArrayList<>();
 		
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
@@ -55,8 +56,8 @@ public class TypDO {
 			resultSet = statement.executeQuery();
 			
 			while (resultSet.next()) {
-				Typ tempTyp = ConvertRowToTyp(resultSet);
-				list.add(tempTyp);
+				TypBE typBE = ConvertRowToTyp(resultSet);
+				list.add(typBE);
 			}
 			return list;
 			
@@ -69,7 +70,7 @@ public class TypDO {
 	}
 	
 	
-	public Typ ConvertRowToTyp (ResultSet resultSet) throws SQLException {
+	public TypBE ConvertRowToTyp (ResultSet resultSet) throws SQLException {
 		int id = resultSet.getInt("id");
 		String name = resultSet.getString("name");
 		String modellbez = resultSet.getString("modellbez");
@@ -78,9 +79,9 @@ public class TypDO {
 		String marke = resultSet.getString("marke");
 		boolean storniert = resultSet.getBoolean("storniert");
 		
-		Typ tempTyp = new Typ(id, name, modellbez, entw_baur, antr_arch, marke, storniert);
+		TypBE typBE = new TypBE(id, name, modellbez, entw_baur, antr_arch, marke, storniert);
 		
-		return tempTyp;
+		return typBE;
 	}
 		
 	
