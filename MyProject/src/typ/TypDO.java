@@ -50,8 +50,8 @@ public class TypDO {
 		ResultSet resultSet = null;
 		
 		try {
-			statement = connection.prepareStatement("select * from typ where modellbez like ?");
-			modellbez += "%";
+			statement = connection.prepareStatement("select * from typ where lower(modellbez) like lower(?)");
+			modellbez = "%" + modellbez + "%";
 			statement.setString(1,  modellbez);
 			resultSet = statement.executeQuery();
 			
@@ -63,9 +63,9 @@ public class TypDO {
 			
 		} finally {
 			//close(statement, resultSet); Hilfsmethode mit if statement != null then statement.close();
-			//statement.close();
-			//resultSet.close();
-			//connection.close();
+			statement.close();
+			resultSet.close();
+			connection.close();
 		}	
 	}
 	
