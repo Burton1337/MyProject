@@ -87,9 +87,14 @@ public class MyProjectApp extends JFrame {
 					else {
 						list = typDO.GetAllTyp();
 					} 
-					for (TypBE temp : list) {
-						System.out.println(temp);
-					} 
+					
+					TypTableModel typTableModel = new TypTableModel(list);
+					table.setModel(typTableModel);
+					
+					//for (TypBE temp : list) {
+					//	System.out.println(temp);
+					//} 
+					
 				} catch (Exception exception) {
 					JOptionPane.showMessageDialog(MyProjectApp.this, "Error: " + exception, "Error", JOptionPane.ERROR_MESSAGE);
 				}
