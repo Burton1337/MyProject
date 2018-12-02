@@ -1,5 +1,4 @@
 package typ;
-import java.sql.*;
 
 public class TypBE {
 	
@@ -20,6 +19,14 @@ public class TypBE {
 		this.antr_arch = antr_arch;
 		this.marke = marke;
 		this.storniert = storniert;
+	}
+	
+	public TypBE(String name, String modellbez, String entw_baur, String antr_arch, String marke) {
+		this.name = name;
+		this.modellbez = modellbez;  
+		this.entw_baur = entw_baur;
+		this.antr_arch = antr_arch;
+		this.marke = marke;
 	}
 	
 	public int getId() {

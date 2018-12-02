@@ -91,10 +91,6 @@ public class MyProjectApp extends JFrame {
 					TypTableModel typTableModel = new TypTableModel(list);
 					table.setModel(typTableModel);
 					
-					//for (TypBE temp : list) {
-					//	System.out.println(temp);
-					//} 
-					
 				} catch (Exception exception) {
 					JOptionPane.showMessageDialog(MyProjectApp.this, "Error: " + exception, "Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -108,6 +104,34 @@ public class MyProjectApp extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.SOUTH);
+		
+		JButton btnTypHinzufgen = new JButton("Typ hinzufügen");
+		btnTypHinzufgen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				AddTypDialog addTypDialog = new AddTypDialog (MyProjectApp.this, typDO);
+				addTypDialog.setVisible(true);
+			}
+		});
+		panel_1.add(btnTypHinzufgen);
 	}
 
+	public void refreshTypView () {
+		List<TypBE> list = null;
+
+		try {
+			list = typDO.GetAllTyp();
+			
+			TypTableModel typTableModel = new TypTableModel(list);
+			table.setModel(typTableModel);
+			
+		} catch (Exception exception) {
+			JOptionPane.showMessageDialog(MyProjectApp.this, "Error: " + exception, "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+	
 }
