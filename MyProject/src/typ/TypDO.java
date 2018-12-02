@@ -62,11 +62,27 @@ public class TypDO {
 			return list;
 			
 		} finally {
-			//close(statement, resultSet); Hilfsmethode mit if statement != null then statement.close();
+			//close(statement, resultSet); Hilfsmethode mit if statement != null then statement.close(); nicht connection closen!
 			statement.close();
 			resultSet.close();
-			connection.close();
 		}	
+	}
+	
+	public void AddTyp (TypBE typBE) throws Exception {
+		PreparedStatement statement = null;
+		try {
+		statement = connection.prepareStatement("insert into typ (name, modellbez, entw_baur, antr_arch, marke) values (?, ?, ?, ?, ?)");
+		statement.setString(1, typBE.getName());
+		statement.setString(2, typBE.getModellbez());
+		statement.setString(3, typBE.getEntw_baur());
+		statement.setString(4, typBE.getAntr_arch());
+		statement.setString(5, typBE.getMarke());
+		
+		statement.executeUpdate();
+		}
+		finally {
+			statement.close(); // if not null, oder neue Methode close(statement);
+		}
 	}
 	
 	
